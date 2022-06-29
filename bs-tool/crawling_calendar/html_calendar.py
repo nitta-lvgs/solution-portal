@@ -33,27 +33,59 @@ def generate_calendars(y1, m1, str0, count):
         write1( file1, str1 ) 
         y1, m1 = prev_next1( 1, y1, m1 ) 
 
-def get_schedule1( y1, m1, cal1, wd1, str0 ):
+def get_schedule1(y1, m1, cal1, wd1, str0 ):
+
+    # カレンダー情報を格納用リスト生成
     cal2 = [""]*len( cal1 )
+    # print(cal1)
+
+    # スケジュール実行ファイルを1行ずつ格納
     a1 = str0.split( "\n" )
+
+    # スケジュール実行ファイルを1行ずつ読み込む
     for i1 in range( len( a1 ) ):
+
+        # 実行ファイル1行のデータを時間と文言に分割
         a2 = a1[i1].strip().split( " " )
+
+        # 時間を年月日週で分割
         a3 = a2[0].split( "/" )
-        if len( a3 ) == 3:
-            y2 = a3[0]
-            m2 = a3[1]
-            d2 = a3[2]
+
+        # 年月日週が正しく入力されている場合
+        if len( a3 ) == 4:
+
+          # 年月日週を取得
+            y2,m2,d2,w2 = a3[0],a3[1],a3[2],a3[3]
+
+            # 年に「*」または数値が入力されている場合
             if "*" in y2 or int( y2 ) == y1:
+                # 月に「*」または数値が入力されている場合
                 if "*" in m2 or int( m2 ) == m1:
-                    d1 = a3[2]
-                    a4 = a2
+
+                    # 日付と1行のデータを取得
+                    d1,a4 = a3[2],a2
+
+                    # 1行のデータから文言データを抽出
                     del a4[0]
                     str1 = str( " ".join( a4 ) ).strip()
 
+                    # 日に「*」が入力されている場合
                     if d2 == "*":
-                      for index, data in enumerate(cal2):
-                        cal2[index] += str1 + "<br>"
-                                
+
+                      # 週に「*」または数値が入力されている場合
+                      if w2 == "*":
+                        for index in range(len(cal2)):
+                          cal2[index] += str1 + "<br>"
+
+                      # 数値が入っていれば週で実行
+                      else:
+
+                        # 7日で割ったあまりで判定（1:月曜日,2:火曜日,3:水曜日,4:木曜日,5:金曜日,6:土曜日,7:日曜日）
+                        for index in range(len(cal2)):
+                          if index % 7 == int(w2):
+                            cal2[index] += str1 + "<br>"
+
+                    # 日に数値が入力されている場合
                     else:
                       cal2[ int(d1)-1 + wd1 ] = cal2[ int(d1)-1 + wd1 ] + str1 + "<br>"
 
