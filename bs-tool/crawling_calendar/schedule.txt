@@ -1,0 +1,16 @@
+*/*/* [8,12]エンジニアスタイル
+*/*/* [17]wordpress
+*/*/1 [0]求人box
+*/*/1 [0]engage
+*/*/1 [1,3]hrmos
+*/*/1 [7]creek_river
+*/*/1 [7]imagica
+*/*/1 [7]green
+*/*/1 [9]jobcan
+*/*/1 [11~13]talentio
+*/*/1 [15]herp
+*/5/18 [3]seo_keyword
+*/8/18 [3]seo_keyword
+*/11/18 [3]seo_keyword
+*/2/18 [3]seo_keyword
+
